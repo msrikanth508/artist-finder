@@ -1,0 +1,67 @@
+@import "./variables.scss";
+
+.container-fluid {
+  padding: 0;
+}
+
+.header {
+  margin-bottom: 2em;
+  background: $primary;
+  color: #fff;
+}
+
+.header__badge {
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 2em;
+}
+
+.header__badge--red {
+  background-color: $highlight;
+}
+
+.font--color {
+  color: $icon-color;
+}
+
+.font__f--color {
+  color: $primary;
+}
+
+.like-icon svg {
+  //position: relative;
+  display: inline-block;
+  // top: 10px;
+  //left: 20px;
+  stroke-width: 5px;
+  fill: #fff;
+  stroke: $gamma;
+  // background-color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.like-icon--liked svg {
+  fill: $gamma;
+}
+.like-icon__text-block {
+  display: inline-block;
+  padding-right: 0.3em;
+}
+
+.like-icon__votes {
+  font-size: 0.8em;
+}
+
+.like-icon__text {
+  text-transform: uppercase;
+  font-size: 0.5em;
+}
+
+.app-logo {
+  width: 25px;
+    height: 25px;
+    margin: 0 .2em;
+    vertical-align: text-top;
+}

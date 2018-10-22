@@ -1,0 +1,61 @@
+@import "./variables.scss";
+
+.pending {
+  animation-name: shade;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.pending__content {
+  background-color: $placeholder-color;
+  color: $placeholder-color;
+  user-select: none;
+
+  &::after {
+    content: "____";
+    display: block;
+    visibility: hidden;
+    margin-bottom: 0.5em;
+  }
+}
+
+.pending--sm {
+  line-height: 1.5;
+}
+
+.pending--md {
+  line-height: 2.2;
+}
+
+.pending--lg {
+  line-height: 2.8;
+}
+
+.pending--width25 {
+  width: 25%;
+}
+
+.pending--width50 {
+  width: 50%;
+}
+
+.pending--width75 {
+  width: 75%;
+}
+
+.pending--width-full {
+  width: 100%;
+}
+
+@keyframes shade {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
