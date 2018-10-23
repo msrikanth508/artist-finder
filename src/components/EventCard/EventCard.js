@@ -33,7 +33,7 @@ const EventCard = ({ events }) => (
             <Like />
           </div>
 
-          <CardBody>
+          <CardBody className="event-info">
             <FaClock /> {formatDate(event.datetime)}
             <br />
             <FaMapMarkerAlt /> {event.venue.name}, {event.venue.city},{" "}
@@ -51,7 +51,9 @@ const EventCard = ({ events }) => (
 
           <CardBody>
             <CardSubtitle>Description</CardSubtitle>
-            <div className="description">{event.description || "NA"}</div>
+            <p className="description" title={event.description}>
+              {event.description || "NA"}
+            </p>
             <CardSubtitle>Lineup</CardSubtitle>
             <div>
               {event.lineup.map(item => (
@@ -61,17 +63,15 @@ const EventCard = ({ events }) => (
               ))}
             </div>
           </CardBody>
-          <CardBody>
-            <a href={event.url} rel="noopener noreferrer" target="_blank">
-              <Button color="primary">
-                {event.offers &&
-                event.offers.length &&
-                event.offers[0].status === "available"
-                  ? "Buy Tickets"
-                  : "Notify Me"}
-              </Button>
-            </a>
-          </CardBody>
+          <a href={event.url} rel="noopener noreferrer" target="_blank">
+            <Button color="primary">
+              {event.offers &&
+              event.offers.length &&
+              event.offers[0].status === "available"
+                ? "Buy Tickets"
+                : "Notify Me"}
+            </Button>
+          </a>
         </Card>
       </Col>
     ))}

@@ -6,6 +6,11 @@
     a {
       color: #fff;
     }
+    .navbar-brand {
+      &:hover {
+        color: inherit;
+      }
+    }
     .nav-item {
       a {
         padding-left: 1em;
@@ -45,6 +50,7 @@
   margin: 0.5em 0;
   .card-body {
     padding: 1rem;
+
     .description {
       text-overflow: ellipsis;
       overflow: hidden;
@@ -114,6 +120,9 @@
   }
 }
 
+.event-info {
+  min-height: 152px;
+}
 .animate_bell {
   animation: ring 1.5s ease infinite;
 }
