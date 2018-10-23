@@ -12,17 +12,17 @@ import {
 import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import { formatDate } from "../../utils/";
 import Like from "../Like/";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 /**
- * 
+ *
  * EventCard Component
- * @param {any} { events } 
+ * @param {any} { events }
  */
 const EventCard = ({ events }) => (
   <Row>
     {events.map((event, index) => (
-      <Col xs="12" sm="4" key={event.id}>
+      <Col xs="12" sm="6" md="6" lg="4" key={event.id}>
         <Card>
           <div className="img-container">
             <img
@@ -79,7 +79,7 @@ const EventCard = ({ events }) => (
 );
 
 EventCard.propTypes = {
-  events: PropTypes.array,
-}
+  events: PropTypes.array
+};
 
 export default EventCard;

@@ -14,33 +14,74 @@ import {
 } from "reactstrap";
 import styles from "../../styles/index.module.scss";
 import { FaBell, FaUserCircle } from "react-icons/fa";
-import logo from '../../logo.svg';
+import logo from "../../logo.svg";
+import constants from "../../constants/";
+import { cache } from "../../utils/";
 
-export default class AppHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-      isNotificationOpened: false,
-      isTouched: false
-    };
+const { notifications, NOTIFICATIONS_SEEN } = constants;
+
+/**
+ * AppHeader component
+ */
+export default class AppHeader extends React.PureComponent {
+  state = {
+    isOpen: false,
+    notifications,
+    isNotificationOpened: false,
+    isTouched: cache.has(NOTIFICATIONS_SEEN) ? true : false,
+    animateNotificationIcon: false
+  };
+
+  componentDidMount() {
+    // start animating ring icon
+    this.startStopNotificationIconAnimation();
+    // stop animation
+    setTimeout(() => {
+      this.startStopNotificationIconAnimation();
+    }, 1000);
   }
+  /**
+   * 
+   * Toggle button event for hamburg menu on small resolutions
+   */
   toggle = () => {
     this.setState(prevState => ({
       isOpen: !prevState.isOpen
     }));
   };
+
+  /**
+   * 
+   * Perform animation on notification icon
+   * @memberof AppHeader
+   */
+  startStopNotificationIconAnimation() {
+    requestAnimationFrame(() => {
+      this.setState(prevState => ({
+        animateNotificationIcon: !prevState.animateNotificationIcon
+      }));
+    });
+  }
+  /**
+   * 
+   * Handle notification click event
+   */
   handleToggle = () => {
+    cache.setItem(NOTIFICATIONS_SEEN, true);
     this.setState(prevState => ({
       isTouched: true,
       isNotificationOpened: !prevState.isNotificationOpened
     }));
   };
+
   render() {
     return (
       <div>
         <Navbar light expand="md" className={styles.header}>
-          <NavbarBrand href="/"><img src={logo} alt="My logo" className={styles['app-logo']} />Artist Finder</NavbarBrand>
+          <NavbarBrand href="/">
+            <img src={logo} alt="My logo" className={styles["app-logo"]} />
+            Artist Finder
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -55,7 +96,11 @@ export default class AppHeader extends React.Component {
                   data-toggle="dropdown"
                   aria-expanded={this.state.isNotificationOpened}
                 >
-                  <FaBell />
+                  <FaBell
+                    className={
+                      this.state.animateNotificationIcon ? "animate_bell" : ""
+                    }
+                  />
                   {!this.state.isTouched ? (
                     <Badge
                       color="primary"
@@ -68,12 +113,11 @@ export default class AppHeader extends React.Component {
                   ) : null}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Hurry up! New events have been added.
-                  </DropdownItem>
-                  <DropdownItem>
-                    Get 50% off on every ticket booking.
-                  </DropdownItem>
+                  {this.state.notifications.map(notifcation => (
+                    <DropdownItem key={notifcation.id}>
+                      {notifcation.text}
+                    </DropdownItem>
+                  ))}
                 </DropdownMenu>
               </Dropdown>
 

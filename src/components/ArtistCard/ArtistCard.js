@@ -3,16 +3,16 @@ import { Row, Col, Table } from "reactstrap";
 import PropTypes from "prop-types";
 
 /**
- * 
+ *
  * ArtistCard component to show artist details
- * @param {any} { artist } 
+ * @param {any} { artist }
  */
 const ArtistCard = ({ artist }) => (
   <Row>
-    <Col xs="12" sm="3">
+    <Col xs="12" sm="6" lg="3">
       <img src={artist.thumb_url} alt="avatar" width="100%" height="100%" />
     </Col>
-    <Col sm={"auto"}>
+    <Col xs="12" sm="6" lg="9">
       <Table>
         <tbody>
           <tr>

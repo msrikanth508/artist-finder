@@ -66,7 +66,7 @@
     }
   }
   .tag {
-    margin-left: 0.5em;
+    margin-right: 0.5em;
     background: $gamma;
   }
 
@@ -78,7 +78,8 @@
     .like-container {
       position: absolute;
       right: 0;
-      bottom: 0;
+      bottom: 0.1em;
+      border-radius: 0.2em;
       height: 40px;
       width: 66px;
       background: #4db6ac;
@@ -102,7 +103,44 @@
     th,
     td {
       border-top: 0;
-      word-wrap: break-word;
+      word-break: break-word;
     }
+  }
+}
+
+.search__search-input {
+  &.form-control-lg {
+    padding-left: 1.5em;
+  }
+}
+
+.animate_bell {
+  animation: ring 1.5s ease infinite;
+}
+
+@keyframes ring {
+  0% {
+    transform: rotate(35deg);
+  }
+  12.5% {
+    transform: rotate(-30deg);
+  }
+  25% {
+    transform: rotate(25deg);
+  }
+  37.5% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  62.5% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

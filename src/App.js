@@ -14,7 +14,12 @@ class App extends Component {
         <Container fluid>
           <AppHeader />
           <Row>
-            <Col sm={{ size: 8, offset: 2 }}>
+            <Col
+              md={{ size: 10, offset: 1 }}
+              xs={{ size: 12, offset: 0 }}
+              sm={{ size: 10, offset: 1 }}
+              lg={{ size: 8, offset: 2 }}
+            >
               <Home />
             </Col>
           </Row>

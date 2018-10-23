@@ -7,17 +7,27 @@ import {
   NoData
 } from "../components/";
 import api from "../api/";
-import { debounce } from "../utils/";
+import { debounce, cache } from "../utils/";
+import constants from "../constants/";
+
+const {
+  LAST_SEARCH_KEY,
+  LAST_SEARCH_ARTIST_DETAILS,
+  LAST_SEARCH_ARTIST_EVENTS
+} = constants;
 
 /**
  * Home Component
  */
 class Home extends React.PureComponent {
-  state = this.getDefaultState();
+  state = {
+    ...this.getDefaultState(),
+    ...this.getLastSearchData()
+  };
   /**
-   * 
+   *
    * Handle search event
-   * @param {any} e 
+   * @param {any} e
    */
   handleSearch = e => {
     const { value } = e.target;
@@ -31,7 +41,7 @@ class Home extends React.PureComponent {
    */
   debounceSearch = debounce(this.fetchData, 500);
   /**
-   * 
+   *
    * Fetch artists and events data
    * @memberof Home
    */
@@ -66,7 +76,7 @@ class Home extends React.PureComponent {
           }));
         });
 
-      // Get artist events data  
+      // Get artist events data
       api
         .getArtistEvents(searchTerm)
         .then(response => {
@@ -85,6 +95,7 @@ class Home extends React.PureComponent {
           }));
         });
     } else {
+      cache.clearItem(LAST_SEARCH_KEY);
       this.setState(this.getDefaultState());
     }
   }
@@ -102,6 +113,26 @@ class Home extends React.PureComponent {
       isArtistEventsPending: false
     };
   }
+  /**
+   * Get last searched details
+   */
+  getLastSearchData() {
+    const obj = {
+      searchTerm: "",
+      artistsInfo: null,
+      events: [],
+      isArtistInfoFullFilled: false,
+      isArtistEventsFullfilled: false
+    };
+    if (cache.has(LAST_SEARCH_KEY)) {
+      obj.searchTerm = cache.getItem(LAST_SEARCH_KEY);
+      obj.artistsInfo = JSON.parse(cache.getItem(LAST_SEARCH_ARTIST_DETAILS));
+      obj.events = JSON.parse(cache.getItem(LAST_SEARCH_ARTIST_EVENTS));
+      obj.isArtistInfoFullFilled = true;
+      obj.isArtistEventsFullfilled = true;
+    }
+    return obj;
+  }
 
   render() {
     const {
@@ -115,7 +146,7 @@ class Home extends React.PureComponent {
     } = this.state;
     return (
       <div>
-        <SearchBar onSearch={this.handleSearch} />
+        <SearchBar onSearch={this.handleSearch} value={searchTerm} />
         <br />
         {isArtistInfoFullFilled &&
         isArtistEventsFullfilled &&

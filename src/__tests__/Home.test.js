@@ -84,17 +84,16 @@ describe("Home Container ->", () => {
           });
         })
     );
-    // it("With search term", async () => {   
-    //   jest.useFakeTimers();   
-    //   const Home = mount(<HomePage />);
-    //   Home.setState({
-    //     searchTerm: "jo"
-    //   });
-    //   const response = await Home.instance().fetchData();
-    //   jest.runAllTimers();
-    //   console.log(response)
-    //   const result = await response.json();
-    //   expect(result).toThrow()
-    // });
+    it("With search term", async () => {   
+      jest.useFakeTimers();   
+      const Home = mount(<HomePage />);
+      Home.setState({
+        searchTerm: "jo"
+      });
+      Home.instance().fetchData();
+      jest.runAllTimers();
+      
+      expect(Home.state('artistsInfo')).toBe(null)
+    });
   });
 });

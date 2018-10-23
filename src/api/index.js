@@ -1,24 +1,27 @@
 import { cache } from "../utils/";
+import constants from "../constants/";
 
+const {
+  LAST_SEARCH_KEY,
+  LAST_SEARCH_ARTIST_DETAILS,
+  LAST_SEARCH_ARTIST_EVENTS
+} = constants;
 /**
  * DataFetcher
  */
 class DataFetcher {
   /**
-   * 
+   *
    * Get all artist data
    * @static
-   * @param {string} artistName 
-   * @returns 
+   * @param {string} artistName
+   * @returns
    * @memberof DataFetcher
    */
   static getArtistData(artistName) {
-    const key = `${artistName}_info`;
+    // save search term
+    cache.setItem(LAST_SEARCH_KEY, artistName);
 
-    // if cache has data, retrieve it
-    if (cache.has(key)) {
-      return Promise.resolve(JSON.parse(cache.getItem(key)));
-    }
     // make server call
     return fetch(
       `https://rest.bandsintown.com/artists/${encodeURIComponent(
@@ -31,7 +34,7 @@ class DataFetcher {
       .then(handleErrors)
       .then(res => {
         // save data into cache
-        cache.setItem(key, JSON.stringify(res));
+        cache.setItem(LAST_SEARCH_ARTIST_DETAILS, JSON.stringify(res));
         return res;
       })
       .catch(e => {
@@ -40,20 +43,14 @@ class DataFetcher {
       });
   }
   /**
-   * 
+   *
    * Get all artist events
    * @static
-   * @param {string} artistName 
-   * @returns 
+   * @param {string} artistName
+   * @returns
    * @memberof DataFetcher
    */
   static getArtistEvents(artistName) {
-    const key = `${artistName}_events`;
-    
-    // if cache has data, retrieve it
-    if (cache.has(key)) {
-      return Promise.resolve(JSON.parse(cache.getItem(key)));
-    }
     // make server call
     return fetch(
       `https://rest.bandsintown.com/artists/${encodeURIComponent(
@@ -66,7 +63,7 @@ class DataFetcher {
       .then(handleErrors)
       .then(res => {
         // save data into cache
-        cache.setItem(key, JSON.stringify(res));
+        cache.setItem(LAST_SEARCH_ARTIST_EVENTS, JSON.stringify(res));
         return res;
       })
       .catch(e => {
@@ -76,10 +73,10 @@ class DataFetcher {
   }
 }
 /**
- * 
+ *
  * Format response
- * @param {any} response 
- * @returns 
+ * @param {any} response
+ * @returns
  */
 const handleErrors = response => {
   if (!response.ok) {
