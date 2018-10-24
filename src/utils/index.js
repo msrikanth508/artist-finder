@@ -1,10 +1,13 @@
 import format from "date-fns/format/";
-export { default as cache } from './cache';
-// export const getRandomImage = () => {
-//   const rand = Math.floor(Math.random() * 205646 + 1);
-//   return `https://photos.bandsintown.com/thumb/${rand}.jpeg`;
-// };
+export { default as cache } from "./cache";
 
+/**
+ *
+ * debounce function
+ * @param {any} fn
+ * @param {any} delay
+ * @returns
+ */
 export const debounce = (fn, delay) => {
   let timer = null;
 
@@ -17,4 +20,9 @@ export const debounce = (fn, delay) => {
   };
 };
 
+/**
+ *
+ * Formate date
+ * @param {object} date
+ */
 export const formatDate = date => format(date, "dddd, MMMM Do, YYYY hh:mm A");

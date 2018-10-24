@@ -30,10 +30,7 @@
 }
 
 .like-icon svg {
-  //position: relative;
   display: inline-block;
-  // top: 10px;
-  //left: 20px;
   stroke-width: 5px;
   fill: #fff;
   stroke: $gamma;
@@ -45,6 +42,7 @@
 .like-icon--liked svg {
   fill: $gamma;
 }
+
 .like-icon__text-block {
   display: inline-block;
   padding-right: 0.3em;
@@ -69,6 +67,7 @@
 .search {
   position: relative;
 }
+
 .search__search-icon {
   position: absolute;
   top: 57%;

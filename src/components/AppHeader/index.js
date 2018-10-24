@@ -41,7 +41,7 @@ export default class AppHeader extends React.PureComponent {
     }, 1000);
   }
   /**
-   * 
+   *
    * Toggle button event for hamburg menu on small resolutions
    */
   toggle = () => {
@@ -51,7 +51,7 @@ export default class AppHeader extends React.PureComponent {
   };
 
   /**
-   * 
+   *
    * Perform animation on notification icon
    * @memberof AppHeader
    */
@@ -63,7 +63,7 @@ export default class AppHeader extends React.PureComponent {
     });
   }
   /**
-   * 
+   *
    * Handle notification click event
    */
   handleToggle = () => {

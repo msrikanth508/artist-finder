@@ -1,8 +1,7 @@
 import React from "react";
 import {
   Card,
-  CardBody,
-  CardSubtitle,
+  CardBody, 
   CardLink,
   Row,
   Col,
@@ -23,7 +22,7 @@ const EventCard = ({ events }) => (
   <Row>
     {events.map((event, index) => (
       <Col xs="12" sm="6" md="6" lg="4" key={event.id}>
-        <Card>
+        <Card className="event-card">
           <div className="img-container">
             <img
               width="100%"
@@ -32,29 +31,27 @@ const EventCard = ({ events }) => (
             />
             <Like />
           </div>
-
-          <CardBody className="event-info">
-            <FaClock /> {formatDate(event.datetime)}
-            <br />
-            <FaMapMarkerAlt /> {event.venue.name}, {event.venue.city},{" "}
-            {event.venue.country}.{" "}
-            <CardLink
-              href={`http://maps.google.com/maps?q=${event.venue.latitude},${
-                event.venue.longitude
-              }`}
-              target="_blank"
-            >
-              View on Map.
-            </CardLink>
-            <br />
-          </CardBody>
-
-          <CardBody>
-            <CardSubtitle>Description</CardSubtitle>
+          <CardBody className="card-info-body">
+            <div className="event-info">
+              <FaClock /> {formatDate(event.datetime)}
+              <br />
+              <FaMapMarkerAlt /> {event.venue.name}, {event.venue.city},{" "}
+              {event.venue.country}.{" "}
+              <CardLink
+                href={`http://maps.google.com/maps?q=${event.venue.latitude},${
+                  event.venue.longitude
+                }`}
+                target="_blank"
+              >
+                View on Map.
+              </CardLink> 
+            </div>
+            
+            <small>Description</small>
             <p className="description" title={event.description}>
               {event.description || "NA"}
             </p>
-            <CardSubtitle>Lineup</CardSubtitle>
+            <small>Lineup</small>            
             <div>
               {event.lineup.map(item => (
                 <Badge key={item} className="tag" color="secondary">
@@ -63,6 +60,7 @@ const EventCard = ({ events }) => (
               ))}
             </div>
           </CardBody>
+          
           <a href={event.url} rel="noopener noreferrer" target="_blank">
             <Button color="primary">
               {event.offers &&

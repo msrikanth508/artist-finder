@@ -16,7 +16,6 @@ const SearchBar = ({ onSearch, value }) => {
         <FaSearch />
       </span>
       <Input
-        placeholder="lg"
         bsSize="lg"
         type="search"
         onChange={onSearch}

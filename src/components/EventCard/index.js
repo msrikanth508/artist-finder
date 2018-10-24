@@ -1,12 +1,12 @@
 import EventCardPlaceholder from "./EventCardPlaceholder";
 import EventCard from "./EventCard";
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 /**
- * 
+ *
  * EventCardLayout component acts as holder component
- * @param {any} { events, isRequestPending } 
- * @returns 
+ * @param {any} { events, isRequestPending }
+ * @returns
  */
 const EventCardLayout = ({ events, isRequestPending }) => {
   if (!isRequestPending && !events.length) {
@@ -23,10 +23,9 @@ const EventCardLayout = ({ events, isRequestPending }) => {
   );
 };
 
-
 EventCardLayout.propTypes = {
   events: PropTypes.array,
-  isRequestPending: PropTypes.bool,
-}
+  isRequestPending: PropTypes.bool
+};
 
 export default EventCardLayout;

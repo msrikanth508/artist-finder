@@ -57,6 +57,12 @@
       margin-bottom: 1em;
       white-space: nowrap;
     }
+
+    &.card-info-body {
+      .event-info {
+        min-height: 8em;
+      }
+    }
   }
   .card-subtitle {
     color: #6c757d;
@@ -120,9 +126,6 @@
   }
 }
 
-.event-info {
-  min-height: 152px;
-}
 .animate_bell {
   animation: ring 1.5s ease infinite;
 }

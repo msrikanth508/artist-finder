@@ -14,7 +14,7 @@ class Like extends React.PureComponent {
     votes: Math.floor(Math.random() * 999) + 1
   };
   /**
-   * 
+   *
    * Handle thumbs up click event
    */
   handleLikeClick = () => {
