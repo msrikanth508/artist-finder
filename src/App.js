@@ -13,7 +13,7 @@ class App extends Component {
       <IconContext.Provider value={{ className: styleModues["font--color"] }}>
         <Container fluid>
           <AppHeader />
-          <Row>
+          <Row className={styleModues['app-row']}>
             <Col
               md={{ size: 10, offset: 1 }}
               xs={{ size: 12, offset: 0 }}

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardBody, 
-  CardLink,
-  Row,
-  Col,
-  Button,
-  Badge
-} from "reactstrap";
+import { Card, CardBody, CardLink, Row, Col, Button, Badge } from "reactstrap";
 import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import { formatDate } from "../../utils/";
 import Like from "../Like/";
@@ -32,35 +24,44 @@ const EventCard = ({ events }) => (
             <Like />
           </div>
           <CardBody className="card-info-body">
-            <div className="event-info">
-              <FaClock /> {formatDate(event.datetime)}
-              <br />
-              <FaMapMarkerAlt /> {event.venue.name}, {event.venue.city},{" "}
-              {event.venue.country}.{" "}
-              <CardLink
-                href={`http://maps.google.com/maps?q=${event.venue.latitude},${
-                  event.venue.longitude
-                }`}
-                target="_blank"
-              >
-                View on Map.
-              </CardLink> 
+            <div className="flex cart-info-item">
+              <span>
+                <FaClock />
+              </span>
+              <span className="text">{formatDate(event.datetime)}</span>
             </div>
-            
+
+            <div className="flex cart-info-item">
+              <span>
+                <FaMapMarkerAlt />
+              </span>
+              <span className="text">
+                {event.venue.name}, {event.venue.city}, {event.venue.country}.{" "}
+                <CardLink
+                  href={`http://maps.google.com/maps?q=${
+                    event.venue.latitude
+                  },${event.venue.longitude}`}
+                  target="_blank"
+                >
+                  View on Map.
+                </CardLink>
+              </span>
+            </div>
+            <br />
             <small>Description</small>
             <p className="description" title={event.description}>
               {event.description || "NA"}
             </p>
-            <small>Lineup</small>            
+            {/* <small>Lineup</small>
             <div>
               {event.lineup.map(item => (
                 <Badge key={item} className="tag" color="secondary">
                   {item}
                 </Badge>
               ))}
-            </div>
+            </div> */}
           </CardBody>
-          
+
           <a href={event.url} rel="noopener noreferrer" target="_blank">
             <Button color="primary">
               {event.offers &&

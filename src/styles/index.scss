@@ -59,8 +59,11 @@
     }
 
     &.card-info-body {
-      .event-info {
-        min-height: 8em;
+      .cart-info-item {
+        
+        .text {
+          padding-left: 10px;
+        }
       }
     }
   }
@@ -96,6 +99,7 @@
       width: 66px;
       background: #4db6ac;
       color: #fff;
+      display: flex;
       // border-radius: 0.2em;
       padding: 0.3em;
     }
@@ -118,6 +122,10 @@
       word-break: break-word;
     }
   }
+}
+
+.flex {
+  display: flex;
 }
 
 .search__search-input {

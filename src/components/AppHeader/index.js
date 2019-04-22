@@ -126,7 +126,7 @@ export default class AppHeader extends React.PureComponent {
                   <FaUserCircle />
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>User123</DropdownItem>
+                  <DropdownItem>Mike</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
